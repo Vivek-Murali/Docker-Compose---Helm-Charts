@@ -6,10 +6,10 @@ setup:
 
 cleanup:
 	cd ..
-	rm -t airbyte
+	rm -r ./airbyte
 
 up:
-	docker-compose up
+	docker-compose -f ./airbyte/docker-compose.yml up -d
 
 down:
 	docker-compose down
