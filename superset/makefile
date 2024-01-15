@@ -6,13 +6,13 @@ setup:
 
 cleanup:
 	cd ..
-	rm -r superset
+	sudo rm -r superset
 
 up:
 	docker-compose -f ./superset/docker-compose.yml up -d
 
 down:
-	docker-compose down
+	docker-compose -f ./superset/docker-compose.yml down
 
 pro:
 	docker compose -f docker-compose-non-dev.yml pull

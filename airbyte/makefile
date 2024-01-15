@@ -12,4 +12,4 @@ up:
 	docker-compose -f ./airbyte/docker-compose.yml up -d
 
 down:
-	docker-compose down
+	docker-compose -f ./airbyte/docker-compose.yml down
