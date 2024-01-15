@@ -15,5 +15,5 @@ down:
 	docker-compose -f ./superset/docker-compose.yml down
 
 pro:
-	docker compose -f docker-compose-non-dev.yml pull
-	docker compose -f docker-compose-non-dev.yml up
+	docker-compose -f ./superset/docker-compose-non-dev.yml pull
+	docker-compose -f ./superset/docker-compose-non-dev.yml up
