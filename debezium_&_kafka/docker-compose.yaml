@@ -62,3 +62,23 @@ services:
          - STATUS_STORAGE_TOPIC=my_connect_statuses
          - STATUS_STORAGE_REPLICATION_FACTOR=1
          - REST_ADVERTISED_HOST_NAME=medium_debezium
+
+  ksqldb-server:
+    image: confluentinc/ksqldb-server:0.29.0
+    hostname: ksqldb-server
+    container_name: ksqldb-server
+    depends_on:
+      - kafka
+      - schema-registry
+    ports:
+      - "8088:8088"
+    volumes:
+      - "./extensions/:/opt/ksqldb-udfs"
+    environment:
+      KSQL_LISTENERS: "http://0.0.0.0:8088"
+      KSQL_BOOTSTRAP_SERVERS: "kafka:9092"
+      KSQL_KSQL_SCHEMA_REGISTRY_URL: "http://schema-registry:8081"
+      KSQL_KSQL_LOGGING_PROCESSING_STREAM_AUTO_CREATE: "true"
+      KSQL_KSQL_LOGGING_PROCESSING_TOPIC_AUTO_CREATE: "true"
+      # Configuration for UDFs
+      KSQL_KSQL_EXTENSION_DIR: "/opt/ksqldb-udfs"
